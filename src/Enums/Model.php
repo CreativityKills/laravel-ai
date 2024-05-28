@@ -19,7 +19,7 @@ enum Model: string
     case LLAMA3_8B_8192 = 'llama3-8b-8192';
     case LLAMA3_70B_8192 = 'llama3-70b-8192';
     case GEMMA_7B_IT = 'gemma-7b-it';
-    case MISTRAL_8X7B_32768 = 'mistral-8x7b-32768';
+    case MISTRAL_8X7B_32768 = 'mixtral-8x7b-32768';
 
     public function isSupportedForProvider(string $provider): bool
     {
