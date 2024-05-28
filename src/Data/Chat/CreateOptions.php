@@ -7,8 +7,8 @@ namespace CreativityKills\LaravelAI\Data\Chat;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use CreativityKills\LaravelAI\Enums\Role;
+use CreativityKills\LaravelAI\Enums\Model;
 use CreativityKills\LaravelAI\Data\Message;
-use CreativityKills\LaravelAI\Data\Enums\Model;
 use CreativityKills\LaravelAI\Data\ResponseFormat;
 use CreativityKills\LaravelAI\Exceptions\UnsupportedModel;
 
