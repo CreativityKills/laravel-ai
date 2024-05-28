@@ -1,5 +1,7 @@
 <?php
 
+use CreativityKills\LaravelAI\Enums\Model;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -29,6 +31,19 @@ return [
     */
 
     'system_message' => env('AI_LLM_SYSTEM_MESSAGE', 'You are a helpful assistant.'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the model that will be used to generate text using
+    | the AI service. The model is a specific type of AI model that is
+    | trained on a large dataset to generate text.
+    |
+    */
+
+    'model' => env('AI_LLM_MODEL', Model::GPT3_5_TURBO_16k->value),
 
     /*
     |--------------------------------------------------------------------------

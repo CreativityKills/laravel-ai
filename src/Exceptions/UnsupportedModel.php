@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CreativityKills\LaravelAI\Exceptions;
 
 use Exception;
-use CreativityKills\LaravelAI\Data\Enums\Model;
+use CreativityKills\LaravelAI\Enums\Model;
 
 class UnsupportedModel extends Exception
 {

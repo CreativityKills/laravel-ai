@@ -20,12 +20,14 @@ final class CreateOptions
      */
     public readonly array $messages;
 
+    public readonly Model $model;
+
     /**
      * @param  array<Message>  $messages
      */
     public function __construct(
         array|Message $messages,
-        public readonly Model $model,
+        ?Model $model = null,
         ?Message $systemMessage = null,
         public readonly float $frequencyPenalty = 0,
         public readonly ?int $maxTokens = null,
@@ -36,8 +38,10 @@ final class CreateOptions
         public readonly float $temperature = 1,
         public readonly ?string $user = null,
     ) {
+        $model ??= Model::from(Config::string('ai.model'));
         $systemMessage ??= new Message(role: Role::SYSTEM, content: Config::string('ai.system_message'));
 
+        $this->model = $model;
         $this->messages = [$systemMessage, ...Arr::wrap($messages)];
 
         $this->validate();
