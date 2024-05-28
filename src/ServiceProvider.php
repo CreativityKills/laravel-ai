@@ -43,8 +43,8 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
      */
     protected function getOpenAIClient(): OpenAIClient
     {
-        $apiKey = Config::string('ai.openai.api_key');
-        $organization = Config::string('ai.openai.organization');
+        $apiKey = Config::string('ai.providers.openai.api_key');
+        $organization = Config::string('ai.providers.openai.organization');
 
         try {
             Assert::string($apiKey);
@@ -58,7 +58,7 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
             ->withOrganization($organization)
             ->withHttpHeader('OpenAI-Beta', 'assistants=v1')
             ->withHttpClient(new GuzzleHttp\Client([
-                'timeout' => Config::integer('ai.openai.request_timeout', 30),
+                'timeout' => Config::integer('ai.providers.openai.request_timeout', 30),
             ]))
             ->make();
     }
