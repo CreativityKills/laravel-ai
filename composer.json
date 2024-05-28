@@ -1,0 +1,73 @@
+{
+    "name": "creativitykills/laravel-ai",
+    "description": "Support for Popular AI SDKs like OpenAI and Groq",
+    "keywords": [
+        "laravel",
+        "php",
+        "openai",
+        "groq",
+        "sdk",
+        "codex",
+        "GPT-3",
+        "GPT-4",
+        "llama",
+        "mistral",
+        "DALL-E",
+        "api",
+        "client",
+        "natural",
+        "language",
+        "processing"
+    ],
+    "homepage": "https://github.com/CreativityKills/laravel-ai",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Neo",
+            "email": "public@neoi.sh",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.8.1",
+        "laravel/framework": "^9.46.0|^10.34.2|^11.0",
+        "openai-php/client": "^v0.9.1",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.57",
+        "phpstan/phpstan": "^1.10.47"
+    },
+    "autoload": {
+        "psr-4": {
+            "CreativityKills\\LaravelAI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CreativityKills\\LaravelAI\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CreativityKills\\LaravelAI\\LaravelAiServiceProvider"
+            ],
+            "aliases": {
+                "LaravelAI": "CreativityKills\\LaravelAI\\LaravelAiFacade"
+            }
+        }
+    }
+}
