@@ -19,6 +19,7 @@ enum Model: string
     case LLAMA3_8B_8192 = 'llama3-8b-8192';
     case LLAMA3_70B_8192 = 'llama3-70b-8192';
     case GEMMA_7B_IT = 'gemma-7b-it';
+    case MISTRAL_8X7B_32768 = 'mistral-8x7b-32768';
 
     public function isSupportedForProvider(string $provider): bool
     {
@@ -28,7 +29,7 @@ enum Model: string
 
         $modelsHashMap = [
             'openai' => [self::GPT4o, self::GPT4_TURBO, self::GPT4, self::GPT3_5_TURBO_16k],
-            'groq' => [self::LLAMA3_8B_8192, self::LLAMA3_70B_8192, self::GEMMA_7B_IT],
+            'groq' => [self::LLAMA3_8B_8192, self::LLAMA3_70B_8192, self::GEMMA_7B_IT, self::MISTRAL_8X7B_32768],
         ];
 
         return in_array($this, $modelsHashMap[$provider]);
