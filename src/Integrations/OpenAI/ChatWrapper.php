@@ -19,6 +19,8 @@ class ChatWrapper implements ChatContract
 
     public function create(CreateOptions $options): CreateResponse
     {
+        Context::add('openai_options', $options);
+
         $response = $this->client->chat()->create($options->toArray())->toArray();
 
         Context::add('openai_response', $response);

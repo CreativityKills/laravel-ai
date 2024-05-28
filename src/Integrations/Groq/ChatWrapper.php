@@ -20,6 +20,8 @@ class ChatWrapper implements ChatContract
 
     public function create(CreateOptions $options): CreateResponse
     {
+        Context::add('groq_options', $options);
+
         $response = $this->client->chat()->completions()->create($options->toArray());
 
         if (! is_array($response)) {
