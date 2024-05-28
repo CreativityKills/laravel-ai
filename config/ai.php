@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use CreativityKills\LaravelAI\Enums\Model;
 
 return [

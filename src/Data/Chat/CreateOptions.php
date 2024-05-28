@@ -84,7 +84,7 @@ final class CreateOptions
         Assert::nullOrPositiveInteger($this->maxTokens);
 
         // Validation for the n
-        Assert::positiveInteger($this->n);
+        Assert::nullOrPositiveInteger($this->n);
 
         // validation for the presence penalty
         Assert::lessThanEq($this->presencePenalty, 2.0);
