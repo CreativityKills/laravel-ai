@@ -24,7 +24,7 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
     public function register(): void
     {
         $this->app->singleton(ClientContract::class, function () {
-            $provider = Config::string('laravel-ai.provider');
+            $provider = Config::string('ai.provider');
 
             return new Client(
                 match ($provider) {
@@ -43,8 +43,8 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
      */
     protected function getOpenAIClient(): OpenAIClient
     {
-        $apiKey = Config::string('laravel-ai.openai.api_key');
-        $organization = Config::string('laravel-ai.openai.organization');
+        $apiKey = Config::string('ai.openai.api_key');
+        $organization = Config::string('ai.openai.organization');
 
         try {
             Assert::string($apiKey);
@@ -58,7 +58,7 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
             ->withOrganization($organization)
             ->withHttpHeader('OpenAI-Beta', 'assistants=v1')
             ->withHttpClient(new GuzzleHttp\Client([
-                'timeout' => Config::integer('laravel-ai.openai.request_timeout', 30),
+                'timeout' => Config::integer('ai.openai.request_timeout', 30),
             ]))
             ->make();
     }

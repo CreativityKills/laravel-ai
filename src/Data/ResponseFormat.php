@@ -28,7 +28,7 @@ final class ResponseFormat implements Arrayable
     public function toArray(): array
     {
         return [
-            'type' => match (Config::string('laravel-ai.provider')) {
+            'type' => match (Config::string('ai.provider')) {
                 'openai' => 'json_object',
                 default => $this->type,
             },

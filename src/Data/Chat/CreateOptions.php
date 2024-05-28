@@ -35,7 +35,7 @@ final class CreateOptions
         public readonly float $temperature = 1,
         public readonly ?string $user = null,
     ) {
-        $systemMessage ??= new Message(role: Role::SYSTEM, content: Config::string('laravel-ai.system_message'));
+        $systemMessage ??= new Message(role: Role::SYSTEM, content: Config::string('ai.system_message'));
 
         $this->messages = [$systemMessage, ...$messages];
 
@@ -63,7 +63,7 @@ final class CreateOptions
 
     protected function validate(): void
     {
-        $provider = Config::string('laravel-ai.provider');
+        $provider = Config::string('ai.provider');
 
         // Validation for the messages
         Assert::allIsInstanceOf($this->messages, Message::class);

@@ -22,7 +22,7 @@ enum Model: string
 
     public function isSupportedForProvider(string $provider): bool
     {
-        $supportedProviders = array_keys(Arr::wrap(config('laravel-ai.providers')));
+        $supportedProviders = array_keys(Arr::wrap(config('ai.providers')));
 
         Assert::oneOf($provider, $supportedProviders);
 
