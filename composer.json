@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "CreativityKills\\LaravelAI\\LaravelAiServiceProvider"
+                "CreativityKills\\LaravelAI\\ServiceProvider"
             ],
             "aliases": {
-                "LaravelAI": "CreativityKills\\LaravelAI\\LaravelAiFacade"
+                "AI": "CreativityKills\\LaravelAI\\AI"
             }
         }
     }
