@@ -16,8 +16,8 @@ enum Model: string
     case GPT3_5_TURBO_16k = 'gpt-3.5-turbo-16k';
 
     // Groq Models
-    case LLAMA3_8B_8192 = 'llama-3.8-b-8192';
-    case LLAMA3_70B_8192 = 'llama-3.7-b-8192';
+    case LLAMA3_8B_8192 = 'llama3-8b-8192';
+    case LLAMA3_70B_8192 = 'llama3-70b-8192';
     case GEMMA_7B_IT = 'gemma-7b-it';
 
     public function isSupportedForProvider(string $provider): bool
