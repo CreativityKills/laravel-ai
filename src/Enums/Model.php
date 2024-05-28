@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CreativityKills\LaravelAI\Data\Enums;
+namespace CreativityKills\LaravelAI\Enums;
 
 use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
