@@ -20,6 +20,11 @@ composer require creativitykills/laravel-ai
 // Usage description here
 ```
 
+### Supports
+
+-   [ ] OpenAI
+    -   [x] Chat
+
 ### Testing
 
 ```bash

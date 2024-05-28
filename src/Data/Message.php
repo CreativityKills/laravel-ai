@@ -13,8 +13,8 @@ use Illuminate\Contracts\Support\Arrayable;
 final class Message implements Arrayable
 {
     public function __construct(
-        public readonly Role $role,
         public readonly string $content,
+        public readonly Role $role = Role::USER,
     ) {
     }
 
