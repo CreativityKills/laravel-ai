@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CreativityKills\LaravelAI\Data\Chat;
 
+use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use CreativityKills\LaravelAI\Enums\Role;
@@ -23,7 +24,7 @@ final class CreateOptions
      * @param  array<Message>  $messages
      */
     public function __construct(
-        array $messages,
+        array|Message $messages,
         public readonly Model $model,
         ?Message $systemMessage = null,
         public readonly float $frequencyPenalty = 0,
@@ -37,7 +38,7 @@ final class CreateOptions
     ) {
         $systemMessage ??= new Message(role: Role::SYSTEM, content: Config::string('ai.system_message'));
 
-        $this->messages = [$systemMessage, ...$messages];
+        $this->messages = [$systemMessage, ...Arr::wrap($messages)];
 
         $this->validate();
     }
