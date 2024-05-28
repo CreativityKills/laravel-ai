@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace CreativityKills\LaravelAI\Resources;
+namespace CreativityKills\LaravelAI\Integrations\OpenAI;
 
+use OpenAI\Client;
 use CreativityKills\LaravelAI\Data\Chat\CreateOptions;
-use CreativityKills\LaravelAI\Contracts\ClientContract;
 use CreativityKills\LaravelAI\Data\Chat\CreateResponse;
 use CreativityKills\LaravelAI\Contracts\Resources\ChatContract;
 
-class Chat implements ChatContract
+class ChatWrapper implements ChatContract
 {
     public function __construct(
-        protected ClientContract $client
+        protected Client $client
     ) {
     }
 
     public function create(CreateOptions $options): CreateResponse
     {
         return CreateResponse::from(
-            $this->client->chat()->create($options)->toArray()
+            $this->client->chat()->create($options->toArray())->toArray()
         );
     }
 }

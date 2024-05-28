@@ -8,13 +8,16 @@ use OpenAI;
 use Throwable;
 use GuzzleHttp;
 use Webmozart\Assert\Assert;
+use LucianoTonet\GroqPHP\Groq;
 use OpenAI\Client as OpenAIClient;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use CreativityKills\LaravelAI\Contracts\ClientContract;
+use CreativityKills\LaravelAI\Client as LaravelAIClient;
 use CreativityKills\LaravelAI\Exceptions\ApiKeyIsMissing;
 use CreativityKills\LaravelAI\Exceptions\UnsupportedProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use CreativityKills\LaravelAI\Integrations\OpenAI\ClientWrapper as OpenAIClientWrapper;
 
 final class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
@@ -26,16 +29,17 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
         $this->app->singleton(ClientContract::class, function () {
             $provider = Config::string('ai.provider');
 
-            return new Client(
+            return new LaravelAIClient(
                 match ($provider) {
-                    'openai' => $this->getOpenAIClient(),
+                    'openai' => new OpenAIClientWrapper($this->getOpenAIClient()),
+                    // 'groq' => $this->getGroqClient(),
                     default => throw UnsupportedProvider::create($provider),
                 }
             );
         });
 
         $this->app->alias(ClientContract::class, 'laravel-ai');
-        $this->app->alias(ClientContract::class, Client::class);
+        $this->app->alias(ClientContract::class, LaravelAIClient::class);
     }
 
     /**
@@ -63,6 +67,15 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
             ->make();
     }
 
+    public function getGroqClient(): Groq
+    {
+        $apiKey = Config::string('ai.providers.groq.api_key');
+
+        throw_unless(filled($apiKey), ApiKeyIsMissing::create('groq'));
+
+        return new Groq($apiKey);
+    }
+
     /**
      * Bootstrap any application services.
      */
@@ -82,6 +95,6 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
      */
     public function provides(): array
     {
-        return [Client::class, ClientContract::class, 'laravel-ai'];
+        return [LaravelAIClient::class, ClientContract::class, 'laravel-ai'];
     }
 }

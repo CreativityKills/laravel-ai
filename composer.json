@@ -33,6 +33,7 @@
         "php": "^8.0",
         "guzzlehttp/guzzle": "^7.8.1",
         "laravel/framework": "^9.46.0|^10.34.2|^11.0",
+        "lucianotonet/groq-php": "^0.0.4",
         "openai-php/client": "^v0.9.1",
         "webmozart/assert": "^1.11"
     },

@@ -85,6 +85,8 @@ return [
             'request_timeout' => env('OPENAI_REQUEST_TIMEOUT', 30),
         ],
 
-        'groq' => [],
+        'groq' => [
+            'api_key' => env('GROQ_API_KEY'),
+        ],
     ],
 ];
