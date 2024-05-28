@@ -17,6 +17,7 @@ use CreativityKills\LaravelAI\Client as LaravelAIClient;
 use CreativityKills\LaravelAI\Exceptions\ApiKeyIsMissing;
 use CreativityKills\LaravelAI\Exceptions\UnsupportedProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use CreativityKills\LaravelAI\Integrations\Groq\ClientWrapper as GroqClientWrapper;
 use CreativityKills\LaravelAI\Integrations\OpenAI\ClientWrapper as OpenAIClientWrapper;
 
 final class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
@@ -32,7 +33,7 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
             return new LaravelAIClient(
                 match ($provider) {
                     'openai' => new OpenAIClientWrapper($this->getOpenAIClient()),
-                    // 'groq' => $this->getGroqClient(),
+                    'groq' => new GroqClientWrapper($this->getGroqClient()),
                     default => throw UnsupportedProvider::create($provider),
                 }
             );
